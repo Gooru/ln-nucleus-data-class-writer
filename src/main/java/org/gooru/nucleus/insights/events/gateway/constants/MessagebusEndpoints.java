@@ -29,7 +29,7 @@ public final class MessagebusEndpoints {
     public static final String MBEP_NOTIFICATION = "org.gooru.nucleus.message.bus.notification";
     public static final String MBEP_METRICS = "org.gooru.nucleus.message.bus.metrics";
     
-    //Mukul - Newly added constant for Analytics
+    //Mukul - Newly added constant for Class Reports API - Write
     public static final String MBEP_ANALYTICS_WRITE = "org.gooru.nucleus.message.bus.analytics.write";
 
 

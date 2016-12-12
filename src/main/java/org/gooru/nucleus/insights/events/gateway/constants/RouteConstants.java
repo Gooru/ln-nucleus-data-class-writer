@@ -2,14 +2,11 @@ package org.gooru.nucleus.insights.events.gateway.constants;
 
 /**
  * Created by ashish on 4/12/15
- * updated by mukul@gooru
+ * updated by mukul@gooru for Class Reports
  * 
  */
 public final class RouteConstants {
 
-    // Mukul
-	public static final String API_AUTH_ROUTE = "/api/nucleus-insights/*";
-    
     // Helper: Entity Id constants
     public static final String ID_RESOURCE = "resourceId";
     public static final String ID_QUESTION = "questionId";
@@ -28,8 +25,6 @@ public final class RouteConstants {
     public static final String ID_USER = "userId";
     public static final String ID_EMAIL = "email";
     public static final String CODE_CLASS = "classCode";
-    
-    //Mukul
     public static final String ID_SESSION = "sessionId";
 
     // Helper: Operations
@@ -66,14 +61,15 @@ public final class RouteConstants {
     private static final String RES_STATS = "stats";
     private static final String SEP = "/";
     private static final String COLON = ":";
-    
-    //Mukul
+
+    //Class Reports
     private static final String LOCATION = "location";
     private static final String CURRENT = "current";
     private static final String PERFORMANCE = "performance";
     
     // Helper constants
-    //Mukul - Updated API Version
+	public static final String API_AUTH_ROUTE = "/api/nucleus-insights/*";
+    //Updated API Version
     private static final String API_VERSION = "v2";
     private static final String API_BASE_ROUTE = "/api/nucleus-insights/" + API_VERSION + '/';
     
@@ -81,11 +77,11 @@ public final class RouteConstants {
     private static final String ENTITY_RESOURCES = "resources";
     private static final String ENTITY_QUESTIONS = "questions";
     private static final String ENTITY_ASSESSMENTS = "assessments";
-    //Mukul
+    
     private static final String ENTITY_ASSESSMENT = "assessment";    
     private static final String ENTITY_ASSESSMENTS_EX = "assessments-external";
     private static final String ENTITY_COLLECTIONS = "collections";
-    //Mukul
+    
     private static final String ENTITY_COLLECTION = "collections";
     private static final String ENTITY_COURSES = "courses";
     private static final String ENTITY_UNITS = "units";
@@ -99,16 +95,20 @@ public final class RouteConstants {
     private static final String ENTITY_TX_CODES = "codes";
     private static final String ENTITY_COPIER = "copier";
     private static final String ENTITY_PROFILES = "profiles";
-    //Mukul
+
     private static final String ENTITY_PEERS = "peers";
     private static final String ENTITY_USER = "user";
     private static final String ENTITY_SESSION = "sessions";
     private static final String ENTITY_STATUS = "status";
 
     
-    //Route Analytics Events
+    //Route Analytics Events - Class Reports
     private static final String EVENT = "event";
     public static final String WRITE_EVENT_ROUTE = API_BASE_ROUTE + EVENT;
+    
+    //Mukul - For connecting to Cassandra Analytics
+    public static final String API_KEY = "?apiKey=c2hlZWJhbkBnb29ydWxlYXJuaW5nLm9yZw==";
+    public static final String CASS_WRITE_EVENT_ROUTE = API_BASE_ROUTE + EVENT + API_KEY;
     
 
     public static final String EP_INTERNAL_BANNER = "/api/internal/v1/banner";

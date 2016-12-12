@@ -6,11 +6,6 @@ import io.vertx.core.AsyncResult;
 import io.vertx.core.eventbus.Message;
 import io.vertx.ext.web.RoutingContext;
 
-/**
- * Created by ashish on 30/12/15.
- * Updated by mukul@gooru
- * 
- */
 public class RouteResponseUtility {
 
     public void responseHandler(final RoutingContext routingContext, final AsyncResult<Message<Object>> reply,

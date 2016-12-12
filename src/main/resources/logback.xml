@@ -8,9 +8,9 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>nucleus-gateway.log</file>
+        <file>nucleus-data-class-write-gateway.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>nucleus-gateway.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>nucleus-data-class-write-gateway.%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- keep 30 days' worth of history -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>

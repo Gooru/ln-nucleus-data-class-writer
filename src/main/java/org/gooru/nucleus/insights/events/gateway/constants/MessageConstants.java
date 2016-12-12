@@ -75,10 +75,8 @@ public final class MessageConstants {
     public static final String MSG_OP_QUESTION_DELETE = "question.delete";
     // Course Operations
     public static final String MSG_OP_COURSE_GET = "course.get";
-    
-    //Mukul - Updated for testing Message Routing - REVERT BACK LATER
-    //public static final String MSG_OP_COURSE_CREATE = "course.create";
-    public static final String MSG_OP_COURSE_CREATE = "mukul";
+      
+    public static final String MSG_OP_COURSE_CREATE = "course.create";    
     public static final String MSG_OP_COURSE_UPDATE = "course.update";
     public static final String MSG_OP_COURSE_DELETE = "course.delete";
     public static final String MSG_OP_COURSE_COLLABORATOR_UPDATE = "course.collaborator.update";
@@ -155,7 +153,7 @@ public final class MessageConstants {
     public static final String MSG_OP_EVENT_PUBLISH = "event.publish";
     public static final String MSG_OP_EVENT_PROCESS = "event.process";
 
-    // Mukul - Event Writer - Process Collection/Resource.Play Events
+    // Class Reports Constants (Write)
     public static final String MSG_OP_PROCESS_PLAY_EVENTS = "process.play.events";
 
     private MessageConstants() {

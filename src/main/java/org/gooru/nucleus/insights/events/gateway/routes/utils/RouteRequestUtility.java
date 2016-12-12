@@ -29,10 +29,9 @@ public class RouteRequestUtility {
         JsonArray httpArray = new JsonArray();
         if (routingContext.request().method().name().equals(HttpMethod.POST.name())
             || routingContext.request().method().name().equals(HttpMethod.PUT.name())) {
-            //Mukul - FE is sending events as JsonArray and not as JsonObjects
+            //From Vertx's PoV FE is sending events as JsonArray and not as JsonObjects
         	httpArray = routingContext.getBodyAsJsonArray();
             httpBody = httpArray.getJsonObject(0);
-        	//httpBody = routingContext.getBodyAsJson();
         } else if (routingContext.request().method().name().equals(HttpMethod.GET.name())) {
             httpBody = new JsonObject();
             String uri = routingContext.request().query();
@@ -53,5 +52,6 @@ public class RouteRequestUtility {
         result.put(MessageConstants.MSG_USER_ID, (String) routingContext.get(MessageConstants.MSG_USER_ID));
         result.put(MessageConstants.MSG_HEADER_TOKEN, (String) routingContext.get(MessageConstants.MSG_HEADER_TOKEN));
         return result;
-    }
+    }   
+
 }

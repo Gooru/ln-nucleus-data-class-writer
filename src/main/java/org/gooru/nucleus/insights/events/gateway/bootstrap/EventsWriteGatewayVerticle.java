@@ -12,8 +12,7 @@ import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 
 /**
- * Created by ashish on 4/12/15. 
- * updated by mukul@gooru
+ * Created by ashish on 4/12/15.
  * 
  * Starts the HTTP gateway for nucleus.
  * <p>
