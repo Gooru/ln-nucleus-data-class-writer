@@ -55,6 +55,9 @@ dependencies {
     // Other dependencies
     compile "ch.qos.logback:logback-classic:${logbackVersion}"
 
+	//Kafka
+	compile group: 'org.apache.kafka', name: 'kafka-clients', version: '0.10.1.1'
+
     // Test dependencies
     testCompile "junit:junit:${junitVersion}"
 }
@@ -63,7 +66,7 @@ shadowJar {
     classifier = 'fat'
     manifest {
         attributes 'Main-Class': 'io.vertx.core.Launcher'
-        attributes 'Main-Verticle': 'org.gooru.nucleus.insights.events.gateway.bootstrap.EventsWriteGatewayVerticle'
+        attributes 'Main-Verticle': 'org.gooru.nucleus.insights.events.gateway.bootstrap.BootstrapVerticle'
         attributes 'Created-By': 'Gooru.org'
     }
 }
