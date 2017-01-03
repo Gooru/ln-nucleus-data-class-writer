@@ -32,6 +32,8 @@ public final class MessagebusEndpoints {
     //Mukul - Newly added constant for Class Reports API - Write
     public static final String MBEP_ANALYTICS_WRITE = "org.gooru.nucleus.message.bus.analytics.write";
 
+    public static final String MBEP_RAW_EVENT = "org.gooru.nucleus.insights.message.bus.event";
+
 
 
     private MessagebusEndpoints() {
