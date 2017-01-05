@@ -155,7 +155,10 @@ public final class MessageConstants {
 
     // Class Reports Constants (Write)
     public static final String MSG_OP_PROCESS_PLAY_EVENTS = "process.play.events";
-
+    public final static String MSG_OP_CREATE_EVENT = "create.event";
+    public final static String MSG_OP_FIND_EVENT = "find.event";
+      
+    
     private MessageConstants() {
         throw new AssertionError();
     }
