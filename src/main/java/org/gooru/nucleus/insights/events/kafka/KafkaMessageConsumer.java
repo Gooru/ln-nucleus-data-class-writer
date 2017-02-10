@@ -41,23 +41,7 @@ public class KafkaMessageConsumer implements Runnable {
       for (ConsumerRecord<String, String> record : records) {
         switch (record.topic().split(ConfigConstants.HYPHEN)[0]) {
         case ConfigConstants.KAFKA_EVENTLOGS_TOPIC:
-          if (!StringUtil.isNullOrEmpty(record.value())) {
-            JsonObject eventObject = null;
-            try {
-              eventObject = new JsonObject(record.value());
-            } catch (Exception e) {
-              LOGGER.warn("Kafka Message should be JsonObject");
-            }
-            if (eventObject != null) {
-              JsonObject result = new JsonObject();
-              result.put(MessageConstants.MSG_HTTP_BODY, eventObject);
-              LOGGER.info("Message : {}", result);
-              eb.send(MessagebusEndpoints.MBEP_RAW_EVENT, result, options);
-              eb.send(MessagebusEndpoints.MBEP_ANALYTICS_WRITE, result, options);
-            }
-          } else {
-            LOGGER.warn("NULL or Empty message can not be processed...");
-          }
+          sendMessage(record.value());
           break;
         case ConfigConstants.KAFKA_TEST_TOPIC:
           LOGGER.info("Test Kafka Consumer : {}", record.value());
@@ -67,10 +51,31 @@ public class KafkaMessageConsumer implements Runnable {
           LOGGER.warn("We don't have processor to process xAPI event");
           break;
         default:
-          LOGGER.warn("Can not process message from the topic :" + record.topic());
-          //throw new IllegalStateException("Shouldn't be possible to get message on topic " + record.topic());
+          //FIXME: Revisit this logic.
+          LOGGER.warn("Assume that message is coming from unknown topic. Send to handlers anyway");
+          sendMessage(record.value());
         }
       }
+    }
+  }
+  //Send messages to handlers via event bus
+  private void sendMessage(String record) {
+    if (!StringUtil.isNullOrEmpty(record)) {
+      JsonObject eventObject = null;
+      try {
+        eventObject = new JsonObject(record);
+      } catch (Exception e) {
+        LOGGER.warn("Kafka Message should be JsonObject");
+      }
+      if (eventObject != null) {
+        JsonObject result = new JsonObject();
+        result.put(MessageConstants.MSG_HTTP_BODY, eventObject);
+        LOGGER.info("Message : {}", result);
+        eb.send(MessagebusEndpoints.MBEP_RAW_EVENT, result, options);
+        eb.send(MessagebusEndpoints.MBEP_ANALYTICS_WRITE, result, options);
+      }
+    } else {
+      LOGGER.warn("NULL or Empty message can not be processed...");
     }
   }
 }
