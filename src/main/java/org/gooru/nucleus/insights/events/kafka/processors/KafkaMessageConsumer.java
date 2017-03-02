@@ -1,4 +1,4 @@
-package org.gooru.nucleus.insights.events.kafka;
+package org.gooru.nucleus.insights.events.kafka.processors;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -9,8 +9,7 @@ import org.gooru.nucleus.insights.events.gateway.constants.MessagebusEndpoints;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hazelcast.util.StringUtil;
-
+import io.netty.util.internal.StringUtil;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.json.JsonObject;
