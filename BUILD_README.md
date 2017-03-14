@@ -13,6 +13,12 @@ The default task is *shadowJar* which is provided by plugin. So running *gradle*
 
 Once the far Jar is created, it could be run as any other Java application.
 
+## Create kafka topic (single node)
+
+> bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+NOTE : Multinode cluster config can be changed. For more info : https://kafka.apache.org/0100/documentation.html
+
 ## Running the Jar as an application
 
 Following command could be used, from the base directory.
