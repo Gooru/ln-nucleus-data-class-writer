@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.gooru.nucleus.insights.events.gateway.constants.ConfigConstants;
-import org.gooru.nucleus.insights.events.kafka.KafkaMessageConsumer;
+import org.gooru.nucleus.insights.events.kafka.processors.KafkaMessageConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ public class MessageConsumerVerticle extends AbstractVerticle {
   public void start(Future<Void> voidFuture) throws Exception {
     vertx.executeBlocking(blockingFuture -> {
       service = Executors.newFixedThreadPool(config().getInteger(ConfigConstants.THREAD_POOL_SIZE));
-      createConsumer(config().getJsonObject(ConfigConstants.CONFIG_KAFKA));
+      createConsumer(config().getJsonObject(ConfigConstants.CONFIG_KAFKA_CONSUMER));
       blockingFuture.complete();
     }, startApplicationFuture -> {
       if (!startApplicationFuture.succeeded()) {

@@ -3,12 +3,13 @@ package org.gooru.nucleus.insights.events.gateway.routes.utils;
 import java.util.List;
 import java.util.Map;
 
+import org.gooru.nucleus.insights.events.gateway.constants.HttpConstants;
 import org.gooru.nucleus.insights.events.gateway.constants.MessageConstants;
 
 import io.netty.handler.codec.http.QueryStringDecoder;
 import io.vertx.core.http.HttpMethod;
-import io.vertx.core.json.JsonObject;
 import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 
 /**
@@ -27,7 +28,8 @@ public class RouteRequestUtility {
     public JsonObject getBodyForMessage(RoutingContext routingContext) {
         JsonObject httpBody, result = new JsonObject();
         JsonArray httpArray = new JsonArray();
-        if (routingContext.request().method().name().equals(HttpMethod.POST.name())
+        String authorization = routingContext.request().getHeader(HttpConstants.HEADER_AUTH);
+        String sessionToken = authorization != null ? authorization.substring(HttpConstants.TOKEN.length()).trim() : null;        if (routingContext.request().method().name().equals(HttpMethod.POST.name())
             || routingContext.request().method().name().equals(HttpMethod.PUT.name())) {
             //From Vertx's PoV FE is sending events as JsonArray and not as JsonObjects
         	httpArray = routingContext.getBodyAsJsonArray();
@@ -48,9 +50,7 @@ public class RouteRequestUtility {
             httpBody = new JsonObject();
         }
         result.put(MessageConstants.MSG_HTTP_BODY, httpBody);
-        result.put(MessageConstants.MSG_KEY_PREFS, (JsonObject) routingContext.get(MessageConstants.MSG_KEY_PREFS));
-        result.put(MessageConstants.MSG_USER_ID, (String) routingContext.get(MessageConstants.MSG_USER_ID));
-        result.put(MessageConstants.MSG_HEADER_TOKEN, (String) routingContext.get(MessageConstants.MSG_HEADER_TOKEN));
+        result.put(MessageConstants.MSG_HEADER_TOKEN, sessionToken);
         return result;
     }   
 
