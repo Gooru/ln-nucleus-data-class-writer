@@ -72,6 +72,7 @@ public final class RouteConstants {
     //Updated API Version
     private static final String API_VERSION = "v2";
     private static final String API_BASE_ROUTE = "/api/nucleus-insights/" + API_VERSION + '/';
+    private static final String API_RUBRIC_ROUTE = "/api/rubric-grading/" + API_VERSION + '/';
     
     // Helper: Entity name constants
     private static final String ENTITY_RESOURCES = "resources";
@@ -110,6 +111,12 @@ public final class RouteConstants {
     public static final String API_KEY = "?apiKey=c2hlZWJhbkBnb29ydWxlYXJuaW5nLm9yZw==";
     public static final String CASS_WRITE_EVENT_ROUTE = API_BASE_ROUTE + EVENT + API_KEY;
     
+    //Rubric Grading
+    private static final String ENTITY_STUDENTS = "students";
+    private static final String ENTITY_GRADES = "grades";
+    
+    //POST: {REST_END_POINT}/api/rubric-grading/v2/students/grades
+    public static final String STUDENT_GRADES_POST = API_RUBRIC_ROUTE + ENTITY_STUDENTS + SEP + ENTITY_GRADES;
 
     public static final String EP_INTERNAL_BANNER = "/api/internal/v1/banner";
     public static final String EP_INTERNAL_METRICS = "/api/internal/v1/metrics";
