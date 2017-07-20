@@ -157,9 +157,7 @@ public final class MessageConstants {
     public static final String MSG_OP_PROCESS_PLAY_EVENTS = "process.play.events";
     public final static String MSG_OP_CREATE_EVENT = "create.event";
     public final static String MSG_OP_FIND_EVENT = "find.event";
-    
-    // Rubric Grading Constants    
-    public static final String MSG_OP_STUDENTS_GRADES_WRITE = "student.grades.write";
+      
     
     private MessageConstants() {
         throw new AssertionError();

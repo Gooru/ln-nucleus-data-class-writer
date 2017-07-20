@@ -34,8 +34,6 @@ public final class MessagebusEndpoints {
 
     public static final String MBEP_RAW_EVENT = "org.gooru.nucleus.insights.message.bus.event";
 
-    //Rubric Message Bus Endpoint
-	public static final String MBEP_RUBRIC_GRADING_WRITE = "org.gooru.nucleus.message.bus.rubric.grading.write";
 
 
     private MessagebusEndpoints() {
