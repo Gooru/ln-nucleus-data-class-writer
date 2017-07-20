@@ -72,6 +72,8 @@ public class KafkaMessageConsumer implements Runnable {
         LOGGER.info("Message : {}", result);
         eb.send(MessagebusEndpoints.MBEP_RAW_EVENT, result, options);
         eb.send(MessagebusEndpoints.MBEP_ANALYTICS_WRITE, result, options);
+        //Rubrics Grading
+        eb.send(MessagebusEndpoints.MBEP_RUBRIC_GRADING_WRITE, result, options);
       }
     } else {
       LOGGER.warn("NULL or Empty message can not be processed...");
