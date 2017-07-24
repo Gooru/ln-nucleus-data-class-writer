@@ -25,18 +25,50 @@ public class RouteRequestUtility {
      * object, but don't send null
      */
 
-    public JsonObject getBodyForMessage(RoutingContext routingContext) {
+    public JsonObject getJArrayBodyForMessage(RoutingContext routingContext) {
         JsonObject httpBody, result = new JsonObject();
         JsonArray httpArray = new JsonArray();
         String authorization = routingContext.request().getHeader(HttpConstants.HEADER_AUTH);
-        String sessionToken = authorization != null ? authorization.substring(HttpConstants.TOKEN.length()).trim() : null;        if (routingContext.request().method().name().equals(HttpMethod.POST.name())
+        String sessionToken = authorization != null ? authorization.substring(HttpConstants.TOKEN.length()).trim() : null;        
+        if (routingContext.request().method().name().equals(HttpMethod.POST.name())
             || routingContext.request().method().name().equals(HttpMethod.PUT.name())) {
             //From Vertx's PoV FE is sending events as JsonArray and not as JsonObjects
-        	httpArray = routingContext.getBodyAsJsonArray();
-            httpBody = httpArray.getJsonObject(0);
+        		httpArray = routingContext.getBodyAsJsonArray();
+                httpBody = httpArray.getJsonObject(0);        		
         } else if (routingContext.request().method().name().equals(HttpMethod.GET.name())) {
             httpBody = new JsonObject();
             String uri = routingContext.request().query();
+            
+            if (uri != null) {
+                QueryStringDecoder queryStringDecoder = new QueryStringDecoder(uri, false);
+                Map<String, List<String>> prms = queryStringDecoder.parameters();
+                if (!prms.isEmpty()) {
+                    for (Map.Entry<String, List<String>> entry : prms.entrySet()) {
+                        httpBody.put(entry.getKey(), entry.getValue());
+                    }
+                }
+            }
+        } else {
+            httpBody = new JsonObject();
+        }
+        result.put(MessageConstants.MSG_HTTP_BODY, httpBody);
+        result.put(MessageConstants.MSG_HEADER_TOKEN, sessionToken);
+        return result;
+    }   
+    
+    //This is for TEST Purpose: Later Combine these two util methods 
+    public JsonObject getJObjectBodyForMessage(RoutingContext routingContext) {
+        JsonObject httpBody, result = new JsonObject();
+        JsonArray httpArray = new JsonArray();
+        String authorization = routingContext.request().getHeader(HttpConstants.HEADER_AUTH);
+        String sessionToken = authorization != null ? authorization.substring(HttpConstants.TOKEN.length()).trim() : null;        
+        if (routingContext.request().method().name().equals(HttpMethod.POST.name())
+            || routingContext.request().method().name().equals(HttpMethod.PUT.name())) {                    		
+                httpBody = routingContext.getBodyAsJson();
+        } else if (routingContext.request().method().name().equals(HttpMethod.GET.name())) {
+            httpBody = new JsonObject();
+            String uri = routingContext.request().query();
+            
             if (uri != null) {
                 QueryStringDecoder queryStringDecoder = new QueryStringDecoder(uri, false);
                 Map<String, List<String>> prms = queryStringDecoder.parameters();

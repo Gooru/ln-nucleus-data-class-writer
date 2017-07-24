@@ -114,9 +114,10 @@ public final class RouteConstants {
     //Rubric Grading
     private static final String ENTITY_STUDENTS = "students";
     private static final String ENTITY_GRADES = "grades";
+    private static final String ENTITY_RUBRICS = "rubrics";
     
-    //POST: {REST_END_POINT}/api/rubric-grading/v2/students/grades
-    public static final String STUDENT_GRADES_POST = API_RUBRIC_ROUTE + ENTITY_STUDENTS + SEP + ENTITY_GRADES;
+    //POST: {REST_END_POINT}/api/nucleus-insights/v2/rubrics/grades
+    public static final String STUDENT_GRADES_POST = API_BASE_ROUTE + ENTITY_RUBRICS + SEP + ENTITY_GRADES;
 
     public static final String EP_INTERNAL_BANNER = "/api/internal/v1/banner";
     public static final String EP_INTERNAL_METRICS = "/api/internal/v1/metrics";

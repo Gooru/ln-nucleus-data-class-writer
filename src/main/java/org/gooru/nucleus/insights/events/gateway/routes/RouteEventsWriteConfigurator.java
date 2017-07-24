@@ -22,10 +22,8 @@ class RouteEventsWriteConfigurator implements RouteConfigurator {
   @Override
   public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
     router.post(RouteConstants.WRITE_EVENT_ROUTE).handler(routingContext -> {
-      JsonObject request = new RouteRequestUtility().getBodyForMessage(routingContext);
-      LOGGER.debug("***********************************************");
-      LOGGER.debug("REQUEST ::: {} ", request);
-      LOGGER.debug("***********************************************");
+      JsonObject request = new RouteRequestUtility().getJArrayBodyForMessage(routingContext); 
+      LOGGER.debug("REQUEST ::: {} ", request);      
       JsonObject eventObj = request.getJsonObject(MessageConstants.MSG_HTTP_BODY);
       if (eventObj != null && !eventObj.isEmpty()) {
         kafkaMessageProducer(request.getJsonObject(MessageConstants.MSG_HTTP_BODY));
@@ -35,14 +33,25 @@ class RouteEventsWriteConfigurator implements RouteConfigurator {
         routingContext.response().setStatusCode(400).end();
       }
     });
+    
+    router.post(RouteConstants.STUDENT_GRADES_POST).handler(routingContext -> {
+        JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);        
+        LOGGER.debug("REQUEST ::: {} ", request);        
+        JsonObject eventObj = request.getJsonObject(MessageConstants.MSG_HTTP_BODY);
+        if (eventObj != null && !eventObj.isEmpty()) {
+          kafkaMessageProducer(request.getJsonObject(MessageConstants.MSG_HTTP_BODY));
+          routingContext.response().setStatusCode(200).end();
+        } else {
+          // Event Object is mandatory.
+          routingContext.response().setStatusCode(400).end();
+        }
+      });
 
   } // End Configure Routes
 
   private void kafkaMessageProducer(JsonObject request) {
-    if (request != null) {
-      LOGGER.debug("***********************************************");
-      LOGGER.debug("Now dispatch message: \n \n " + request.toString() + "\n");
-      LOGGER.debug("***********************************************");
+    if (request != null) {      
+      LOGGER.debug("Dispatching message: \n \n " + request.toString() + "\n");      
       String eventName = request.getString(ConfigConstants.EVENT_NAME);
       MessageDispatcher.getInstance().sendMessage2Kafka(eventName, request);
       LOGGER.info("Message dispatched successfully for event: {}", eventName);

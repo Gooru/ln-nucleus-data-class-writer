@@ -44,7 +44,7 @@ public class GradingWriteConfigurator implements RouteConfigurator {
 //    }
     	
         router.post(RouteConstants.STUDENT_GRADES_POST).handler(routingContext -> {
-            JsonObject request = new RouteRequestUtility().getBodyForMessage(routingContext);
+            JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
             LOGGER.debug("***********************************************");
             LOGGER.debug("REQUEST ::: {} ", request);
             LOGGER.debug("***********************************************");

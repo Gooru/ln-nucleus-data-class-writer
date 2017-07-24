@@ -14,7 +14,7 @@ public class RouteConfiguration implements Iterable<RouteConfigurator> {
         configurators.add(new RouteGlobalConfigurator());
         
         configurators.add(new RouteEventsWriteConfigurator());
-        configurators.add(new GradingWriteConfigurator());
+        //configurators.add(new GradingWriteConfigurator());
         internalIterator = configurators.iterator();
     }
 
