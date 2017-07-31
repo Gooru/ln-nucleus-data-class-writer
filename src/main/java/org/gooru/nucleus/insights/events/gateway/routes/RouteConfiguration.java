@@ -11,10 +11,8 @@ public class RouteConfiguration implements Iterable<RouteConfigurator> {
     public RouteConfiguration() {
         List<RouteConfigurator> configurators = new ArrayList<>(32);
         // First the global handler to enable to body reading etc
-        configurators.add(new RouteGlobalConfigurator());
-        
+        configurators.add(new RouteGlobalConfigurator());        
         configurators.add(new RouteEventsWriteConfigurator());
-        //configurators.add(new GradingWriteConfigurator());
         internalIterator = configurators.iterator();
     }
 
