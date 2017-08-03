@@ -13,7 +13,7 @@ public final class ConfigConstants {
     public static final String VERTICLES_DEPLOY_LIST = "verticles.deploy.list";
 
     //Kafka Config Constants
-    public static final String CONFIG_KAFKA = "kafka";
+    public static final String CONFIG_KAFKA_CONSUMER = "defaultKafkaConsumerSettings";
     public static final String CONFIG_KAFKA_SERVERS = "bootstrap.servers";
     public static final String CONFIG_KAFKA_GROUP = "group.id";
     public static final String CONFIG_KAFKA_TOPICS = "consumer.topics";
@@ -31,6 +31,8 @@ public final class ConfigConstants {
     public static final String COMMA = ",";
     public static final String COLON = ":";
  
+    public static final String EVENT_NAME = "eventName";
+
     private ConfigConstants() {
         throw new AssertionError();
     }
