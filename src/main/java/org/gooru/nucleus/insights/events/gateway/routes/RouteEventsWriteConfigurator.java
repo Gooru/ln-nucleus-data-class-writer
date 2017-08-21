@@ -35,7 +35,7 @@ class RouteEventsWriteConfigurator implements RouteConfigurator {
     });
     
     router.post(RouteConstants.STUDENT_GRADES_POST).handler(routingContext -> {
-        JsonObject request = new RouteRequestUtility().getJArrayBodyForMessage(routingContext);        
+        JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);        
         LOGGER.debug("REQUEST ::: {} ", request);        
         JsonObject eventObj = request.getJsonObject(MessageConstants.MSG_HTTP_BODY);
         if (eventObj != null && !eventObj.isEmpty()) {
