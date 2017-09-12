@@ -1,5 +1,6 @@
 package org.gooru.nucleus.insights.events.gateway.routes.utils;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -81,9 +82,30 @@ public class RouteRequestUtility {
         } else {
             httpBody = new JsonObject();
         }
+        httpBody.put("userIdFromSession", getUserIDFromToken(sessionToken));
         result.put(MessageConstants.MSG_HTTP_BODY, httpBody);
         result.put(MessageConstants.MSG_HEADER_TOKEN, sessionToken);
         return result;
     }   
+    
+    private static String getUserIDFromToken(String sessionToken) {
+      try {
+          String decoded = new String(Base64.getDecoder().decode(sessionToken));
+          String[] decodedToken = decoded.split(":");
+          try {
+              Integer version = Integer.parseInt(decodedToken[0]);
+              if (version == 2) {
+                  return decodedToken[2];
+              }
+              
+              return decodedToken[1];
+              
+          } catch (NumberFormatException nfe) {
+              return decodedToken[1];
+          }
+      } catch (IllegalArgumentException e) {
+          return null;
+      }
+  }
 
 }
