@@ -1,5 +1,6 @@
 package org.gooru.nucleus.insights.events.gateway.routes.utils;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -25,18 +26,20 @@ public class RouteRequestUtility {
      * object, but don't send null
      */
 
-    public JsonObject getBodyForMessage(RoutingContext routingContext) {
+    public JsonObject getJArrayBodyForMessage(RoutingContext routingContext) {
         JsonObject httpBody, result = new JsonObject();
         JsonArray httpArray = new JsonArray();
         String authorization = routingContext.request().getHeader(HttpConstants.HEADER_AUTH);
-        String sessionToken = authorization != null ? authorization.substring(HttpConstants.TOKEN.length()).trim() : null;        if (routingContext.request().method().name().equals(HttpMethod.POST.name())
+        String sessionToken = authorization != null ? authorization.substring(HttpConstants.TOKEN.length()).trim() : null;        
+        if (routingContext.request().method().name().equals(HttpMethod.POST.name())
             || routingContext.request().method().name().equals(HttpMethod.PUT.name())) {
             //From Vertx's PoV FE is sending events as JsonArray and not as JsonObjects
-        	httpArray = routingContext.getBodyAsJsonArray();
-            httpBody = httpArray.getJsonObject(0);
+        		httpArray = routingContext.getBodyAsJsonArray();
+                httpBody = httpArray.getJsonObject(0);        		
         } else if (routingContext.request().method().name().equals(HttpMethod.GET.name())) {
             httpBody = new JsonObject();
             String uri = routingContext.request().query();
+            
             if (uri != null) {
                 QueryStringDecoder queryStringDecoder = new QueryStringDecoder(uri, false);
                 Map<String, List<String>> prms = queryStringDecoder.parameters();
@@ -53,5 +56,56 @@ public class RouteRequestUtility {
         result.put(MessageConstants.MSG_HEADER_TOKEN, sessionToken);
         return result;
     }   
+    
+    //This is for TEST Purpose: Later Combine these two util methods 
+    public JsonObject getJObjectBodyForMessage(RoutingContext routingContext) {
+        JsonObject httpBody, result = new JsonObject();
+        JsonArray httpArray = new JsonArray();
+        String authorization = routingContext.request().getHeader(HttpConstants.HEADER_AUTH);
+        String sessionToken = authorization != null ? authorization.substring(HttpConstants.TOKEN.length()).trim() : null;        
+        if (routingContext.request().method().name().equals(HttpMethod.POST.name())
+            || routingContext.request().method().name().equals(HttpMethod.PUT.name())) {                    		
+                httpBody = routingContext.getBodyAsJson();
+        } else if (routingContext.request().method().name().equals(HttpMethod.GET.name())) {
+            httpBody = new JsonObject();
+            String uri = routingContext.request().query();
+            
+            if (uri != null) {
+                QueryStringDecoder queryStringDecoder = new QueryStringDecoder(uri, false);
+                Map<String, List<String>> prms = queryStringDecoder.parameters();
+                if (!prms.isEmpty()) {
+                    for (Map.Entry<String, List<String>> entry : prms.entrySet()) {
+                        httpBody.put(entry.getKey(), entry.getValue());
+                    }
+                }
+            }
+        } else {
+            httpBody = new JsonObject();
+        }
+        httpBody.put("userIdFromSession", getUserIDFromToken(sessionToken));
+        result.put(MessageConstants.MSG_HTTP_BODY, httpBody);
+        result.put(MessageConstants.MSG_HEADER_TOKEN, sessionToken);
+        return result;
+    }   
+    
+    private static String getUserIDFromToken(String sessionToken) {
+      try {
+          String decoded = new String(Base64.getDecoder().decode(sessionToken));
+          String[] decodedToken = decoded.split(":");
+          try {
+              Integer version = Integer.parseInt(decodedToken[0]);
+              if (version == 2) {
+                  return decodedToken[2];
+              }
+              
+              return decodedToken[1];
+              
+          } catch (NumberFormatException nfe) {
+              return decodedToken[1];
+          }
+      } catch (IllegalArgumentException e) {
+          return null;
+      }
+  }
 
 }
