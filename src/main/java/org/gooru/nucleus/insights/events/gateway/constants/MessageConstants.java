@@ -157,7 +157,8 @@ public final class MessageConstants {
     public static final String MSG_OP_PROCESS_PLAY_EVENTS = "process.play.events";
     public final static String MSG_OP_CREATE_EVENT = "create.event";
     public final static String MSG_OP_FIND_EVENT = "find.event";
-      
+    //Update Event - Teacher Override for Score
+    public final static String MSG_OP_UPDATE_EVENT = "update.event";      
     
     private MessageConstants() {
         throw new AssertionError();
