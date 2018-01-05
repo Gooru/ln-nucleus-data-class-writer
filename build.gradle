@@ -49,7 +49,7 @@ dependencies {
     // Vertx specific dependencies
     compile "io.vertx:vertx-core:${vertxVersion}"
     compile "io.vertx:vertx-web:${vertxVersion}"
-    //compile "io.vertx:vertx-hazelcast:${vertxVersion}"
+    compile "io.vertx:vertx-hazelcast:${vertxVersion}"
     compile "io.vertx:vertx-dropwizard-metrics:${vertxVersion}"
 
     // Other dependencies

@@ -1,5 +1,6 @@
 package org.gooru.nucleus.insights.events.gateway.routes.utils;
 
+import org.gooru.nucleus.insights.events.gateway.responses.writers.ResponseWriterBuilder;
 import org.slf4j.Logger;
 
 import io.vertx.core.AsyncResult;
@@ -12,7 +13,7 @@ public class RouteResponseUtility {
         final Logger LOG) {
         if (reply.succeeded()) {
         	LOG.info("Success - Message Sent");
-        	routingContext.response().setStatusCode(200).end();
+        	new ResponseWriterBuilder(routingContext, reply).build().writeResponse();
         } else {
             LOG.error("Not able to send message", reply.cause());
             routingContext.response().setStatusCode(500).end();
