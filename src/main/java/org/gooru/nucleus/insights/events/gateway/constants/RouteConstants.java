@@ -119,9 +119,9 @@ public final class RouteConstants {
     public static final String STUDENT_GRADES_POST = API_BASE_ROUTE + ENTITY_RUBRICS + SEP + ENTITY_GRADES;
 
     //Teacher Override for Score
-    //POST: {REST_END_POINT}/api/nucleus-insights/v2/event/update
-    private static final String UPDATE = "update";
-    public static final String UPDATE_EVENT_ROUTE = API_BASE_ROUTE + EVENT + SEP + UPDATE;
+    //POST: {REST_END_POINT}/api/nucleus-insights/v2/score
+    private static final String SCORE = "score";
+    public static final String UPDATE_SCORE_ROUTE = API_BASE_ROUTE + SCORE;
 
     public static final String EP_INTERNAL_BANNER = "/api/internal/v1/banner";
     public static final String EP_INTERNAL_METRICS = "/api/internal/v1/metrics";
