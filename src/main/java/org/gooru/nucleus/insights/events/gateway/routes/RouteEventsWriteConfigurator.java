@@ -59,7 +59,7 @@ class RouteEventsWriteConfigurator implements RouteConfigurator {
     //Update Event - Teacher Override for Score
     eb = vertx.eventBus();
     mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
-    router.put(RouteConstants.UPDATE_EVENT_ROUTE).handler(routingContext -> {
+    router.put(RouteConstants.UPDATE_SCORE_ROUTE).handler(routingContext -> {
       DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
               MessageConstants.MSG_OP_UPDATE_EVENT);
       JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
