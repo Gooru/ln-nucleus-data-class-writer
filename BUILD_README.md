@@ -25,6 +25,6 @@ Following command could be used, from the base directory.
 
 Note that any options that need to be passed onto Vertx instance need to be passed at command line e.g, worker pool size etc
 
-> java -classpath ./build/libs/nucleus-insights-events-gateway-0.1-snapshot-fat.jar: -Dvertx.metrics.options.enabled=true -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory io.vertx.core.Launcher -conf src/main/resources/nucleus-server.json
+> java -classpath ./build/libs/nucleus-insights-events-gateway-0.1-snapshot-fat.jar: -Dvertx.metrics.options.enabled=true -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory io.vertx.core.Launcher -conf src/main/resources/nucleus-data-class-writer.json -cluster -instance 1
 
 There is no cluster specific configuration for gateway.

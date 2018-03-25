@@ -106,7 +106,7 @@ public final class RouteConstants {
     private static final String EVENT = "event";
     public static final String WRITE_EVENT_ROUTE = API_BASE_ROUTE + EVENT;
     
-    //Mukul - For connecting to Cassandra Analytics
+    //For connecting to Cassandra Analytics
     public static final String API_KEY = "?apiKey=c2hlZWJhbkBnb29ydWxlYXJuaW5nLm9yZw==";
     public static final String CASS_WRITE_EVENT_ROUTE = API_BASE_ROUTE + EVENT + API_KEY;
 
@@ -117,6 +117,11 @@ public final class RouteConstants {
     
     //POST: {REST_END_POINT}/api/nucleus-insights/v2/rubrics/grades
     public static final String STUDENT_GRADES_POST = API_BASE_ROUTE + ENTITY_RUBRICS + SEP + ENTITY_GRADES;
+
+    //Teacher Override for Score
+    //POST: {REST_END_POINT}/api/nucleus-insights/v2/score
+    private static final String SCORE = "score";
+    public static final String UPDATE_SCORE_ROUTE = API_BASE_ROUTE + SCORE;
 
     public static final String EP_INTERNAL_BANNER = "/api/internal/v1/banner";
     public static final String EP_INTERNAL_METRICS = "/api/internal/v1/metrics";
