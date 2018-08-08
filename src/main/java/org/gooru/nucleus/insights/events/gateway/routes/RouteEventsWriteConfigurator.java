@@ -24,11 +24,14 @@ import io.vertx.ext.web.Router;
 class RouteEventsWriteConfigurator implements RouteConfigurator {
 	
   private static final Logger LOGGER = LoggerFactory.getLogger(RouteEventsWriteConfigurator.class);
-  private EventBus eb = null;
+  //private EventBus eb = vertx.eventBus();
   private long mbusTimeout;
   
   @Override
   public void configureRoutes(Vertx vertx, Router router, JsonObject config) {
+	 
+	final EventBus eb = vertx.eventBus();
+	
     router.post(RouteConstants.WRITE_EVENT_ROUTE).handler(routingContext -> {
       JsonObject request = new RouteRequestUtility().getJArrayBodyForMessage(routingContext); 
       LOGGER.debug("REQUEST ::: {} ", request);      
@@ -56,14 +59,24 @@ class RouteEventsWriteConfigurator implements RouteConfigurator {
       });
     
     
-    //Update Event - Teacher Override for Score
-    eb = vertx.eventBus();
+    //Update Event - Teacher Override for Score    
     mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
     router.put(RouteConstants.UPDATE_SCORE_ROUTE).handler(routingContext -> {
       DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
               MessageConstants.MSG_OP_UPDATE_EVENT);
       JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
       eb.send(MessagebusEndpoints.MBEP_ANALYTICS_UPDATE, request,
+              options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
+    });
+    
+    //Student Self Grading API for external Assessments 
+    //eb = vertx.eventBus();
+    mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
+    router.post(RouteConstants.STUDENT_SELF_GRADE_EXT_ASSESSMENT_POST).handler(routingContext -> {
+      DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
+              MessageConstants.MSG_OP_SELF_GRADE_EXT_ASSESSMENT);
+      JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
+      eb.send(MessagebusEndpoints.MBEP_ANALYTICS_SELF_GRADING_EXT_ASSESSMENT, request,
               options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
     });
 
