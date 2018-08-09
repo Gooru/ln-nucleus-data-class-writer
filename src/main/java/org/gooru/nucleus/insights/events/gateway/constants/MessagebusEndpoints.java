@@ -8,6 +8,10 @@ public final class MessagebusEndpoints {
     public static final String MBEP_ANALYTICS_UPDATE = "org.gooru.nucleus.message.bus.analytics.update";
     public static final String MBEP_RAW_EVENT = "org.gooru.nucleus.insights.message.bus.event";
     
+    //Student Self Grading 
+    public static final String MBEP_ANALYTICS_SELF_GRADING_EXT_ASSESSMENT = "org.gooru.nucleus.message.bus.analytics.self.grade.ext.assessment";
+
+    
     
     private MessagebusEndpoints() {
         throw new AssertionError();

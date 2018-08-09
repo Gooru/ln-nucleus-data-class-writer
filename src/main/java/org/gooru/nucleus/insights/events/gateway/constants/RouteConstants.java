@@ -27,38 +27,6 @@ public final class RouteConstants {
     public static final String CODE_CLASS = "classCode";
     public static final String ID_SESSION = "sessionId";
 
-    // Helper: Operations
-    private static final String OP_ORDER = "order";
-    private static final String OP_LOOKUP = "lookups";
-    private static final String OP_MEMBER = "members";
-    private static final String OP_INVITE = "invites";
-    private static final String OP_AUTH = "authorization";
-    private static final String OP_DEMOGRAPHICS = "demographics";
-    private static final String OP_FOLLOW = "follow";
-    private static final String OP_UNFOLLOW = "unfollow";
-    private static final String OP_SUBJECT_BUCKET = "subject-buckets";
-    private static final String OP_TAXONOMY = "taxonomy";
-    private static final String OP_NETWORK = "network";
-
-    // Misc helpers
-    private static final String RES_EDUCATIONAL_USE = "educational-use";
-    private static final String RES_DOK = "dok";
-    private static final String RES_ACCESS_HAZARDS = "access-hazards";
-    private static final String RES_READING_LEVELS = "reading-levels";
-    private static final String RES_ADS = "ads";
-    private static final String RES_MEDIA_FEATURES = "media-features";
-    private static final String RES_CEN21SKILLS = "21-century-skills";
-    private static final String RES_GRADES = "grades";
-    private static final String RES_MOMENTS = "moments";
-    private static final String RES_AUDIENCE = "audience";
-    private static final String RES_COUNTRIES = "countries";
-    private static final String RES_STATES = "states";
-    private static final String RES_SCHOOLDISTRICTS = "school-districts";
-    private static final String RES_SCHOOLS = "schools";
-    private static final String RES_TX_STANDARD_FRAMEWORK = "frameworks";
-    private static final String RES_LICENSE = "licenses";
-    private static final String RES_APIKEY_CONFIG = "apikey-config";
-    private static final String RES_STATS = "stats";
     private static final String SEP = "/";
     private static final String COLON = ":";
 
@@ -73,35 +41,6 @@ public final class RouteConstants {
     private static final String API_VERSION = "v2";
     private static final String API_BASE_ROUTE = "/api/nucleus-insights/" + API_VERSION + '/';
     
-    // Helper: Entity name constants
-    private static final String ENTITY_RESOURCES = "resources";
-    private static final String ENTITY_QUESTIONS = "questions";
-    private static final String ENTITY_ASSESSMENTS = "assessments";
-    
-    private static final String ENTITY_ASSESSMENT = "assessment";    
-    private static final String ENTITY_ASSESSMENTS_EX = "assessments-external";
-    private static final String ENTITY_COLLECTIONS = "collections";
-    
-    private static final String ENTITY_COLLECTION = "collections";
-    private static final String ENTITY_COURSES = "courses";
-    private static final String ENTITY_UNITS = "units";
-    private static final String ENTITY_LESSONS = "lessons";
-    private static final String ENTITY_CLASSES = "classes";
-    private static final String ENTITY_COLLABORATORS = "collaborators";
-    private static final String ENTITY_TAXONOMY = "taxonomy";
-    private static final String ENTITY_TX_SUBJECT = "subjects";
-    private static final String ENTITY_TX_COURSE = "courses";
-    private static final String ENTITY_TX_DOMAIN = "domains";
-    private static final String ENTITY_TX_CODES = "codes";
-    private static final String ENTITY_COPIER = "copier";
-    private static final String ENTITY_PROFILES = "profiles";
-
-    private static final String ENTITY_PEERS = "peers";
-    private static final String ENTITY_USER = "user";
-    private static final String ENTITY_SESSION = "sessions";
-    private static final String ENTITY_STATUS = "status";
-
-    
     //Route Analytics Events - Class Reports
     private static final String EVENT = "event";
     public static final String WRITE_EVENT_ROUTE = API_BASE_ROUTE + EVENT;
@@ -114,6 +53,7 @@ public final class RouteConstants {
     private static final String ENTITY_STUDENTS = "students";
     private static final String ENTITY_GRADES = "grades";
     private static final String ENTITY_RUBRICS = "rubrics";
+    private static final String ENTITY_SELF_REPORT = "self-report";
     
     //POST: {REST_END_POINT}/api/nucleus-insights/v2/rubrics/grades
     public static final String STUDENT_GRADES_POST = API_BASE_ROUTE + ENTITY_RUBRICS + SEP + ENTITY_GRADES;
@@ -123,6 +63,10 @@ public final class RouteConstants {
     private static final String SCORE = "score";
     public static final String UPDATE_SCORE_ROUTE = API_BASE_ROUTE + SCORE;
 
+    //POST: {REST_END_POINT}/api/nucleus-insights/v2/self-report
+    public static final String STUDENT_SELF_GRADE_EXT_ASSESSMENT_POST = API_BASE_ROUTE + ENTITY_SELF_REPORT;
+
+    
     public static final String EP_INTERNAL_BANNER = "/api/internal/v1/banner";
     public static final String EP_INTERNAL_METRICS = "/api/internal/v1/metrics";
     // This is event publisher. It expects full blown event structure which will be relayed to Kafka
