@@ -54,6 +54,7 @@ public final class RouteConstants {
     private static final String ENTITY_GRADES = "grades";
     private static final String ENTITY_RUBRICS = "rubrics";
     private static final String ENTITY_SELF_REPORT = "self-report";
+    private static final String ENTITY_OFFLINE_REPORT = "offline-report";
     
     //POST: {REST_END_POINT}/api/nucleus-insights/v2/rubrics/grades
     public static final String STUDENT_GRADES_POST = API_BASE_ROUTE + ENTITY_RUBRICS + SEP + ENTITY_GRADES;
@@ -76,6 +77,9 @@ public final class RouteConstants {
     // Second optional part is <context> which can provide additional information like email should be sent or not
     // Note that difference between original message on message bus and this is the presence of op name
     public static final String EP_INTERNAL_EVENT_PROCESSOR = "/api/internal/v1/eventprocessor";
+    
+    //POST: {REST_END_POINT}/api/nucleus-insights/v2/offline-report
+    public static final String OFFLINE_REPORT_POST = API_BASE_ROUTE + ENTITY_OFFLINE_REPORT;
 
     private RouteConstants() {
         throw new AssertionError();

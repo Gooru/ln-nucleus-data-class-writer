@@ -31,6 +31,8 @@ public final class MessageConstants {
     public final static String MSG_OP_UPDATE_EVENT = "update.event";
     //Student Self Grade for External Assessment
     public final static String MSG_OP_SELF_GRADE_EXT_ASSESSMENT = "student.self.grade.ext.assessment";
+    //Offline Student Report
+    public final static String MSG_OP_OFFLINE_REPORT = "student.offline.report";
     
     private MessageConstants() {
         throw new AssertionError();
