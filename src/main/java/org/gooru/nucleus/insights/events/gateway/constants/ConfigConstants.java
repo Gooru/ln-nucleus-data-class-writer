@@ -32,7 +32,9 @@ public final class ConfigConstants {
     public static final String COLON = ":";
  
     public static final String EVENT_NAME = "eventName";
-
+    public static final String _EVENT_NAME = "event_name";
+    public static final String OFFLINE_STUDENT_EVENT = "offline.student.perf";
+    
     private ConfigConstants() {
         throw new AssertionError();
     }
