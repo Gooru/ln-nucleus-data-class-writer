@@ -1,5 +1,6 @@
 package org.gooru.nucleus.insights.events.gateway.routes;
 
+import org.gooru.nucleus.insights.events.gateway.bootstrap.BootstrapVerticle;
 import org.gooru.nucleus.insights.events.gateway.constants.ConfigConstants;
 import org.gooru.nucleus.insights.events.gateway.constants.MessageConstants;
 import org.gooru.nucleus.insights.events.gateway.constants.MessagebusEndpoints;
@@ -78,20 +79,6 @@ class RouteEventsWriteConfigurator implements RouteConfigurator {
       eb.send(MessagebusEndpoints.MBEP_ANALYTICS_SELF_GRADING_EXT_ASSESSMENT, request,
               options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
     });
-    
-    router.post(RouteConstants.OFFLINE_REPORT_POST).handler(routingContext -> {
-        JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);  
-        LOGGER.debug("REQUEST ::: {} ", request);        
-        JsonObject eventObj = request.getJsonObject(MessageConstants.MSG_HTTP_BODY);
-        if (eventObj != null && !eventObj.isEmpty()) {
-            eventObj.put(ConfigConstants._EVENT_NAME, ConfigConstants.OFFLINE_STUDENT_EVENT);
-            kafkaMessageProducer(eventObj); 
-            routingContext.response().setStatusCode(200).end();
-        } else {
-          // Event Object is mandatory.
-          routingContext.response().setStatusCode(400).end();
-        }
-      });
 
   } // End Configure Routes
 
