@@ -62,7 +62,9 @@ public final class RouteConstants {
     //Teacher Override for Score
     //POST: {REST_END_POINT}/api/nucleus-insights/v2/score
     private static final String SCORE = "score";
+    private static final String PERFORMANCE_UPDATE = "perf-update";
     public static final String UPDATE_SCORE_ROUTE = API_BASE_ROUTE + SCORE;
+    public static final String UPDATE_PERFORMANCE_ROUTE = API_BASE_ROUTE + PERFORMANCE_UPDATE;
 
     //POST: {REST_END_POINT}/api/nucleus-insights/v2/self-report
     public static final String STUDENT_SELF_GRADE_EXT_ASSESSMENT_POST = API_BASE_ROUTE + ENTITY_SELF_REPORT;

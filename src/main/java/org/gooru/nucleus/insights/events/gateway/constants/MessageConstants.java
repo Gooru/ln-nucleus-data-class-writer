@@ -29,6 +29,7 @@ public final class MessageConstants {
     public final static String MSG_OP_FIND_EVENT = "find.event";
     //Update Event - Teacher Override for Score
     public final static String MSG_OP_UPDATE_EVENT = "update.event";
+    public final static String MSG_OP_UPDATE_PERFORMANCE = "update.performance";
     //Student Self Grade for External Assessment
     public final static String MSG_OP_SELF_GRADE_EXT_ASSESSMENT = "student.self.grade.ext.assessment";
     //Offline Student Report
