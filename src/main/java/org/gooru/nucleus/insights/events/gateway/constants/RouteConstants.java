@@ -7,33 +7,8 @@ package org.gooru.nucleus.insights.events.gateway.constants;
  */
 public final class RouteConstants {
 
-    // Helper: Entity Id constants
-    public static final String ID_RESOURCE = "resourceId";
-    public static final String ID_QUESTION = "questionId";
-    public static final String ID_ASSESSMENT = "assessmentId";
-    public static final String ID_COLLECTION = "collectionId";
-    public static final String ID_COURSE = "courseId";
-    public static final String ID_UNIT = "unitId";
-    public static final String ID_LESSON = "lessonId";
-    public static final String ID_CLASS = "classId";
-    public static final String ID_TX_SUBJECT = "subjectId";
-    public static final String ID_TX_DOMAIN = "domainId";
-    public static final String ID_TX_COURSE = "courseId";
-    public static final String ID_TX_STANDARD_FRAMEWORK = "standardFrameworkId";
-    public static final String ID_TX_CODE_ID_LIST = "idList";
-    public static final String ID_COUNTRY = "countryId";
-    public static final String ID_USER = "userId";
-    public static final String ID_EMAIL = "email";
-    public static final String CODE_CLASS = "classCode";
-    public static final String ID_SESSION = "sessionId";
-
-    private static final String SEP = "/";
+	private static final String SEP = "/";
     private static final String COLON = ":";
-
-    //Class Reports
-    private static final String LOCATION = "location";
-    private static final String CURRENT = "current";
-    private static final String PERFORMANCE = "performance";
     
     // Helper constants
 	public static final String API_AUTH_ROUTE = "/api/nucleus-insights/*";
@@ -55,6 +30,11 @@ public final class RouteConstants {
     private static final String ENTITY_RUBRICS = "rubrics";
     private static final String ENTITY_SELF_REPORT = "self-report";
     private static final String ENTITY_OFFLINE_REPORT = "offline-report";
+    //Offline Activities
+    private static final String ENTITY_EVIDENCES = "evidences";
+    private static final String ENTITY_OA = "oa";
+    private static final String ENTITY_SELF_GRADE = "self-grade";
+    private static final String ENTITY_COMPLETE = "complete";
     
     //POST: {REST_END_POINT}/api/nucleus-insights/v2/rubrics/grades
     public static final String STUDENT_GRADES_POST = API_BASE_ROUTE + ENTITY_RUBRICS + SEP + ENTITY_GRADES;
@@ -68,6 +48,23 @@ public final class RouteConstants {
 
     //POST: {REST_END_POINT}/api/nucleus-insights/v2/self-report
     public static final String STUDENT_SELF_GRADE_EXT_ASSESSMENT_POST = API_BASE_ROUTE + ENTITY_SELF_REPORT;
+    
+    //POST: {REST_END_POINT}/api/nucleus-insights/v2/offline-report
+    public static final String OFFLINE_REPORT_POST = API_BASE_ROUTE + ENTITY_OFFLINE_REPORT;
+
+    //Offline Activities
+    //POST: {REST_END_POINT}/api/nucleus-insights/v2/oa/evidences
+    public static final String OA_TASKS_STUDENT_SELF_GRADING_POST = API_BASE_ROUTE + ENTITY_OA + 
+    		SEP + ENTITY_EVIDENCES;
+    //POST: {REST_END_POINT}/api/nucleus-insights/oa/self-grade
+    public static final String OA_TASK_EVIDENCES_POST = API_BASE_ROUTE + ENTITY_OA + 
+    		SEP + ENTITY_SELF_GRADE;
+    //POST: {REST_END_POINT}/api/nucleus-insights/oa/grades
+    public static final String OA_TEACHER_GRADING_POST = API_BASE_ROUTE + ENTITY_OA + 
+    		SEP + ENTITY_GRADES;
+    //POST: {REST_END_POINT}/api/nucleus-insights/oa/complete
+    public static final String OA_COMPLETE_POST = API_BASE_ROUTE + ENTITY_OA + 
+    		SEP + ENTITY_COMPLETE;
 
     
     public static final String EP_INTERNAL_BANNER = "/api/internal/v1/banner";
@@ -79,9 +76,6 @@ public final class RouteConstants {
     // Second optional part is <context> which can provide additional information like email should be sent or not
     // Note that difference between original message on message bus and this is the presence of op name
     public static final String EP_INTERNAL_EVENT_PROCESSOR = "/api/internal/v1/eventprocessor";
-    
-    //POST: {REST_END_POINT}/api/nucleus-insights/v2/offline-report
-    public static final String OFFLINE_REPORT_POST = API_BASE_ROUTE + ENTITY_OFFLINE_REPORT;
 
     private RouteConstants() {
         throw new AssertionError();

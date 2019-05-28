@@ -13,6 +13,7 @@ public class RouteConfiguration implements Iterable<RouteConfigurator> {
         // First the global handler to enable to body reading etc
         configurators.add(new RouteGlobalConfigurator());        
         configurators.add(new RouteEventsWriteConfigurator());
+        configurators.add(new RouteOAConfigurator());
         internalIterator = configurators.iterator();
     }
 
