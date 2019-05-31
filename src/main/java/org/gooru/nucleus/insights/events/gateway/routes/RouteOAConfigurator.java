@@ -30,27 +30,18 @@ public class RouteOAConfigurator implements RouteConfigurator {
 		final EventBus eb = vertx.eventBus();
 		
 	    mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
-	    router.post(RouteConstants.OA_TASK_EVIDENCES_POST).handler(routingContext -> {
+	    router.post(RouteConstants.OA_SUBMISSIONS_POST).handler(routingContext -> {
 	      DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
-	              MessageConstants.MSG_OP_OA_EVIDENCES);
+	              MessageConstants.MSG_OP_OA_SUBMISSIONS);
 	      JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
 	      eb.send(MessagebusEndpoints.MBEP_OFFLINE_ACTIVITY, request,
 	              options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
 	    });
 	    
 	    mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
-	    router.post(RouteConstants.OA_TASKS_STUDENT_SELF_GRADING_POST).handler(routingContext -> {
+	    router.post(RouteConstants.OA_STUDENT_SELF_GRADING_POST).handler(routingContext -> {
 	      DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
-	              MessageConstants.MSG_OP_OA_TASK_SELF_GRADING);
-	      JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
-	      eb.send(MessagebusEndpoints.MBEP_OFFLINE_ACTIVITY, request,
-	              options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
-	    });
-	    
-	    mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
-	    router.post(RouteConstants.OA_COMPLETE_POST).handler(routingContext -> {
-	      DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
-	              MessageConstants.MSG_OP_OA_DCA_EVENT);
+	              MessageConstants.MSG_OP_OA_SELF_GRADING);
 	      JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
 	      eb.send(MessagebusEndpoints.MBEP_OFFLINE_ACTIVITY, request,
 	              options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
