@@ -31,6 +31,7 @@ public final class RouteConstants {
     private static final String ENTITY_RUBRICS = "rubrics";
     private static final String ENTITY_SELF_REPORT = "self-report";
     private static final String ENTITY_OFFLINE_REPORT = "offline-report";
+    private static final String ENTITY_COLLECTIONS = "collections";
     //Offline Activities
     private static final String ENTITY_SUBMISSIONS = "submissions";
     private static final String ENTITY_OA = "oa";
@@ -65,6 +66,11 @@ public final class RouteConstants {
     //POST: internal/nucleus-insights/oa/complete (Internal API)
     public static final String INTERNAL_OA_COMPLETE_POST = API_INTERNAL_ROUTE + ENTITY_OA + 
     		SEP + ENTITY_COMPLETE;
+    
+    //GRADING - for Collections, currently supported for OA.
+    //TODO: reconcile this API with earlier STUDENT_GRADES_POST API, in coordination with FrontEnd
+    public static final String COLLECTION_RUBRICS_GRADING_POST = API_BASE_ROUTE + ENTITY_RUBRICS + 
+    		SEP + ENTITY_GRADES + SEP + ENTITY_COLLECTIONS;
     
     private RouteConstants() {
         throw new AssertionError();
