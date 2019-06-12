@@ -57,7 +57,6 @@ public class RouteRequestUtility {
         return result;
     }   
     
-    //This is for TEST Purpose: Later Combine these two util methods 
     public JsonObject getJObjectBodyForMessage(RoutingContext routingContext) {
         JsonObject httpBody, result = new JsonObject();
         JsonArray httpArray = new JsonArray();
@@ -81,8 +80,13 @@ public class RouteRequestUtility {
             }
         } else {
             httpBody = new JsonObject();
+        } 
+        if (sessionToken != null ) {
+        	httpBody.put("userIdFromSession", getUserIDFromToken(sessionToken));        	
+        } else {
+        	httpBody.putNull("userIdFromSession");
         }
-        httpBody.put("userIdFromSession", getUserIDFromToken(sessionToken));
+        
         result.put(MessageConstants.MSG_HTTP_BODY, httpBody);
         result.put(MessageConstants.MSG_HEADER_TOKEN, sessionToken);
         return result;

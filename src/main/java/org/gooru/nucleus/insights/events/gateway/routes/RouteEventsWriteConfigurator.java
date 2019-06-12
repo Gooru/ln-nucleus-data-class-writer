@@ -69,6 +69,17 @@ class RouteEventsWriteConfigurator implements RouteConfigurator {
               options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
     });
     
+    //Update - Teacher Override for Performance (Score and Timespent)
+    //DCA & CM
+    mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
+    router.put(RouteConstants.UPDATE_PERFORMANCE_ROUTE).handler(routingContext -> {
+      DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
+              MessageConstants.MSG_OP_UPDATE_PERFORMANCE);
+      JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
+      eb.send(MessagebusEndpoints.MBEP_ANALYTICS_UPDATE, request,
+              options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
+    });
+    
     //Student Self Grading API for external Assessments 
     //eb = vertx.eventBus();
     mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
@@ -77,6 +88,25 @@ class RouteEventsWriteConfigurator implements RouteConfigurator {
               MessageConstants.MSG_OP_SELF_GRADE_EXT_ASSESSMENT);
       JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
       eb.send(MessagebusEndpoints.MBEP_ANALYTICS_SELF_GRADING_EXT_ASSESSMENT, request,
+              options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
+    });
+    
+    mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
+    router.post(RouteConstants.OFFLINE_REPORT_POST).handler(routingContext -> {
+      DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
+              MessageConstants.MSG_OP_OFFLINE_REPORT);
+      JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
+      eb.send(MessagebusEndpoints.MBEP_ANALYTICS_OFFLINE_REPORT, request,
+              options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
+    });
+    
+    //Grading
+    mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
+    router.post(RouteConstants.COLLECTION_RUBRICS_GRADING_POST).handler(routingContext -> {
+      DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
+              MessageConstants.MSG_OP_RUBRIC_GRADING);
+      JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
+      eb.send(MessagebusEndpoints.MBEP_RUBRIC_GRADING, request,
               options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
     });
 
