@@ -44,7 +44,6 @@ public final class MessageConstants {
     public static final String MSG_OP_OA_SELF_GRADING = "oa.self.grading";
     public static final String MSG_OP_OA_TEACHER_GRADING = "oa.teacher.grading";
     public static final String MSG_OP_RUBRIC_GRADING = "rubric.grading";
-
     
     private MessageConstants() {
         throw new AssertionError();

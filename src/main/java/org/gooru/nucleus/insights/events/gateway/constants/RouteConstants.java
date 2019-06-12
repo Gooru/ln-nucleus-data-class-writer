@@ -50,7 +50,6 @@ public final class RouteConstants {
 
     //POST: {REST_END_POINT}/api/nucleus-insights/v2/self-report
     public static final String STUDENT_SELF_GRADE_EXT_ASSESSMENT_POST = API_BASE_ROUTE + ENTITY_SELF_REPORT;
-    
     //POST: {REST_END_POINT}/api/nucleus-insights/v2/offline-report
     public static final String OFFLINE_REPORT_POST = API_BASE_ROUTE + ENTITY_OFFLINE_REPORT;
 
