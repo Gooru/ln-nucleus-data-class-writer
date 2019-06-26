@@ -31,7 +31,7 @@ public class RouteInternalConfigurator implements RouteConfigurator {
 	    mbusTimeout = config.getLong(ConfigConstants.MBUS_TIMEOUT, 30L) * 1000;
 	    router.post(RouteConstants.INTERNAL_OA_COMPLETE_POST).handler(routingContext -> {
 	      DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000).addHeader(MessageConstants.MSG_HEADER_OP,
-	              MessageConstants.MSG_OP_OA_COMPLETE);
+	              MessageConstants.MSG_OP_OA_COMPLETE_INTERNAL);
 	      JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
 	      eb.send(MessagebusEndpoints.MBEP_OFFLINE_ACTIVITY, request,
 	              options);      
