@@ -66,6 +66,9 @@ public final class RouteConstants {
     //POST: internal/nucleus-insights/oa/complete (Internal API)
     public static final String INTERNAL_OA_COMPLETE_POST = API_INTERNAL_ROUTE + ENTITY_OA + 
     		SEP + ENTITY_COMPLETE;
+    //POST: {REST_END_POINT}/api/nucleus-insights/oa/complete
+    public static final String OA_COMPLETE_POST = API_BASE_ROUTE + ENTITY_OA + 
+    		SEP + ENTITY_COMPLETE;
     
     //GRADING - for Collections, currently supported for OA.
     //TODO: reconcile this API with earlier STUDENT_GRADES_POST API, in coordination with FrontEnd
