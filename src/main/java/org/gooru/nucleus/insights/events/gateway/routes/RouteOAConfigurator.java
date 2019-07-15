@@ -55,6 +55,13 @@ public class RouteOAConfigurator implements RouteConfigurator {
 	      eb.send(MessagebusEndpoints.MBEP_OFFLINE_ACTIVITY, request,
 	              options, reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));      
 	    });
-
-	  }
-	} 
+		
+        router.post(RouteConstants.OA_COMPLETE_POST).handler(routingContext -> {
+          DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout * 1000)
+              .addHeader(MessageConstants.MSG_HEADER_OP, MessageConstants.MSG_OP_OA_COMPLETE);
+          JsonObject request = new RouteRequestUtility().getJObjectBodyForMessage(routingContext);
+          eb.send(MessagebusEndpoints.MBEP_OFFLINE_ACTIVITY, request, options,
+              reply -> new RouteResponseUtility().responseHandler(routingContext, reply, LOGGER));
+        });
+	}
+}
